@@ -3,9 +3,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">	
 <style>
 button{
+padding:12px 6px;
+width:50%;	
 margin:auto;}
 </style>
-<script>
+<script>	
 function con(){
 if(confirm("Do you really want to leave?\n You will lose your all current progress!!"))
 return true;
@@ -21,23 +23,23 @@ l = Number(l);
 l= parseInt(l*10)/10;
 </script>
 <body style="background-color:blue;" onunload="return con()">
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c2.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c1.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c3.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c4.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c5.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c6.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c7.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c8.mp3"></audio>
-<audio style="visibity:hidden" autoplay loop>
+<audio style="visibity:hidden" loop>
 <source src="c9.mp3"></audio>
 <audio style="visibity:hidden" loop >
 <source src="congrats.mp3"></audio>
@@ -47,7 +49,7 @@ l= parseInt(l*10)/10;
 <h2 style='text-align:center;color:red;' id="h2">Guessenger!<br>LEVEL-2</h2>
 <div style="text-align:center" id="d_i">
 <p id="d_p" style="font-weight:bold;">Guess a number between 1 and 100(both inclusive)</p>
-<i style='color:green;font-weight:bold;background:black;'>Enter a guess:</i><input type="text" id="g_i"><br>
+<i style='color:green;font-weight:bold;background:black;'>Enter a guess:</i><br><input type="text" id="g_i"><br><br>
 <button onclick="chk()" value="Try yor lck">Try Yor luk</button>
 </div><br>
 <img src="l_l.png" style="border-radius:50%;height:10%;width:10%;" onclick="in_l()"title="Increase your life by 3">
@@ -72,7 +74,7 @@ else{
 ij.style.position="fixed";
       
      ij.style.right ="2%";
-     ij.style.top ="60%";}
+     ij.style.top ="2%";}
     var un_c = 0;
     var t_g = Math.floor(Math.random()*(10**l)) +1 ;
   document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
@@ -100,7 +102,7 @@ else{
            aud[aud.length-2].load();
           aud[aud.length-2].play();
      if(i>parseInt(2*max_chance/3))
-     st = "<br> What a nice luck u r with!<br>Winning at such a critical stage when your last change is "+i+"<br>Just a magic yaar!...<br>Congrats!!"
+     st = "<br> What a nice luck u r with!<br>Winning at such a critical stage when your remaining chance is "+(max_chance-i)+"<br>Just a magic yaar!...<br>Congrats!!"
  else if(i<=parseInt(max_chance/3))
    st="<br>Super hit boss!<br>What a marvellous of luck u r with!!";
      else 
