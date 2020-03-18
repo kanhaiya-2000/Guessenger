@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<style>
+button{
+margin:auto;}
+</style>
+<script>
+function con(){
+if(confirm("Do you really want to leave?\n You will lose your all current progress!!"))
+return true;
+return false;}
+alert("Dear friend!\nour Guessenger is a simple game that is based on luck and chance.However,if you know even little about binary technique,then you can easily complete its all level along with a bit of  luck..\nGood luck!!\nThere are many levels like 1,2,1.1,1.2..etc.\nDo Enjoy!\nRegards kk !!");
+var l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
+l = Number(l);
+ while(!l||l<1){
+    if(l<1)
+   alert("Oh!Enter valid level n!");
+   var l = prompt("Enter the difficulty level you wish to play");
+   l = Number(l);}
+l= parseInt(l*10)/10;
+</script>
+<body style="background-color:blue;" onunload="return con()">
+<audio style="visibity:hidden" autoplay loop>
+<source src="c2.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c1.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c3.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c4.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c5.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c6.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c7.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c8.mp3"></audio>
+<audio style="visibity:hidden" autoplay loop>
+<source src="c9.mp3"></audio>
+<audio style="visibity:hidden" loop >
+<source src="congrats.mp3"></audio>
+<audio style="visibity:hidden" >
+<source src="gameover.mp3"></audio>
+<h2 style="text-align:center;color:black;">Dare to compete!</h2>
+<h2 style='text-align:center;color:red;' id="h2">Guessenger!<br>LEVEL-2</h2>
+<div style="text-align:center" id="d_i">
+<p id="d_p" style="font-weight:bold;">Guess a number between 1 and 100(both inclusive)</p>
+<i style='color:green;font-weight:bold;background:black;'>Enter a guess:</i><input type="text" id="g_i"><br>
+<button onclick="chk()" value="Try yor lck">Try Yor luk</button>
+</div><br>
+<img src="l_l.png" style="border-radius:50%;height:10%;width:10%;" onclick="in_l()"title="Increase your life by 3">
+<button onclick="retry()" id="b" style="display:none;">RETRY</button>
+<button onclick="L2()" id="d_i_n" style="display:none;">NEXT</button>
+<p id="d_r" style="background-color:yellow;font-weight:bold;text-align:center;">Your all result will appear here!</p>
+<img style="width:100%;height:auto;" src="https://thumbs.dreamstime.com/b/challenging-complex-like-puzzle-pictured-as-word-challenging-puzzle-pieces-to-show-challenging-can-be-difficult-164222308.jpg">
+<script>
+//play a custom song
+var aud = document.getElementsByTagName("audio");
+aud[l*10%9].load();
+aud[l*10%9].play();
+    var l_l = 1;
+   var ij = document.getElementsByTagName("img")[0];
+   var x = window.matchMedia("(min-width:500px)");
+  if(x.matches){
+     ij.style.position="fixed";
+      
+     ij.style.right ="20%";
+     ij.style.top ="2%";}
+else{
+ij.style.position="fixed";
+      
+     ij.style.right ="2%";
+     ij.style.top ="50%";}
+    var un_c = 0;
+    var t_g = Math.floor(Math.random()*(10**l)) +1 ;
+    alert(t_g);
+  document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
+ 
+    var para = document.getElementById("d_r");
+    var g_in = [];
+     var max_chance = Math.floor(Math.log(10**l)/Math.log(2));
+	document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+    var i =0;
+    var st;
+    function chk(){
+        aud[l*10%9].play();
+    	var v = document.getElementById("g_i").value;
+        if(!Number(v)){
+          alert("Enter valid input!!");
+          
+            }
+else{
+            g_in[i++] = v;
+   var k = g_in[i-1];
+    	if((k==t_g)){
+  document.getElementById("d_i").style.display ="none";
+ document.getElementById("d_i_n").style.display ="block";
+         aud[l*10%9].pause();
+           aud[aud.length-2].load();
+          aud[aud.length-2].play();
+     if(i>parseInt(2*max_chance/3))
+     st = "<br> What a nice luck u r with!<br>Winning at such a critical stage when your last change is "+i+"<br>Just a magic yaar!...<br>Congrats!!"
+ else if(i<=parseInt(max_chance/3))
+   st="<br>Super hit boss!<br>What a marvellous of luck u r with!!";
+     else 
+        st = "";
+          para.innerHTML = "Congrats!You are our hero/heroine of this match..."+st;      
+          para.style.background = "#0f0";
+         
+    }
+  
+    if((k>t_g)&&(i<max_chance))
+   { para.innerHTML = "Last entry was higher!<br>Previous guesses:"+g_in+"<br>Chances left:"+(max_chance-i);
+   para.style.background="#f00";
+//  document.getElementById("g_i").reset();
+   }
+   if((k<t_g)&&(i<max_chance))
+   { para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in+"<br>Chances left:"+(max_chance-i);
+   para.style.background="#f00";
+   }
+   if((i>=max_chance)&&(k!=t_g)){
+aud[l*10%9].pause();
+aud[aud.length -1].load();
+   aud[aud.length -1].play();
+   para.innerHTML ="Oops!You ran out of your chance!!";
+document.getElementById("b").style.display="block";
+document.getElementById("d_i").style.display ="none";
+   
+    }
+   }}
+function retry(){
+     aud[l*10%9].load();
+     aud[l*10%9].play();
+   aud[aud.length -1].pause();
+     max_chance = Math.floor(Math.log(10**l)/Math.log(2));
+     document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+       un_c ++;
+	g_in = [];
+        i=0;
+      document.getElementById("d_i").style.display ="block";
+      document.getElementById("b").style.display="none";
+       if(un_c>3){
+	document.getElementById("d_i").style.display ="none";
+       para.innerHTML = "It seems like you might get tired!Well <br>I would suggest you to try lower-one (in case u r feeling frustrated)<br>click on this line to decide further what you have to do!";
+para.addEventListener("click",g);
+function g(){
+if(confirm("Do you want to play the same level?")){
+document.getElementById("d_i").style.display ="block";
+para.innerHTML="Well!Keep going on";
+ para.style.background ="yellow";}
+else
+window.location.reload();
+para.removeEventListener("click",g);}}
+     else
+      para.innerHTML = "Well ! Never worry!Give a hopeful try!";
+      para.style.background ="yellow";
+}
+
+  function in_l(){
+if(confirm("You can use your life-line only single time in a match.Use it in extreme severe case only\nDo u want to use it? ")){
+max_chance = max_chance+3 ;
+document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+alert("Your chance has been increased by 3");
+aud[l*10%9].load();
+     aud[l*10%9].play();
+   aud[aud.length -1].pause();
+ij.style.display="none";
+} }
+function L2(){
+  aud[aud.length-2].pause();
+  aud[l*10%9].pause();
+ document.getElementById("d_i").style.display ="block";
+ document.getElementById("d_i_n").style.display ="none";
+l= parseInt((l+0.1)*10)/10 ;
+para.innerHTML = "Welcome to level "+l;
+aud[l*10%9].load();
+     aud[l*10%9].play();
+g_in = [];
+ un_c = 0;
+     t_g = Math.floor(Math.random()*(10**l)) +1 ;
+  document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
+      max_chance = Math.floor(Math.log(10**l)/Math.log(2))+(max_chance-i);
+	document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+     i =0;
+   alert("Welcome to Level "+l);
+
+}
+
+</script>
+</body>
+</html>
+
