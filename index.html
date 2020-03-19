@@ -12,20 +12,20 @@ color:blue;
 }
 span:focus,span:active{
 color:red;
-font-size:50px;
+font-size:60px;
 }
 button{
 padding:12px 6px;
 width:50%;	
 margin:auto;}
 #s_r {
-   margin:auto;
+   
   text-align:center;
   display: none; 
   position: fixed;
   z-index: 1; 
   padding-top: 100px; 
-  right: 0;
+  left: 0;
   top: 0;
   width: 300px; 
   height: 100%; 
@@ -79,12 +79,12 @@ l= parseInt(l*10)/10;
 <i style='color:green;font-weight:bold;background:black;'>Enter a guess:</i><br><input type="text" id="g_i"><br><br>
 <button onclick="chk()" value="Try yor lck">Try Yor luk</button>
 </div><br>
-	
-<img src="rules.jpeg" style="border-radius:50%;height:10%;width:10%;" onclick="showRule()"title="View rule">	
-<img src="l_l.png" style="border-radius:50%;height:10%;width:10%;" onclick="in_l()"title="Increase your life by 3">
+<img src="l_l.png" style="border-radius:50%;height:60px;width:60px;" onclick="in_l()"title="Increase your life by 3">	
+<img src="rules.jpeg" style="border-radius:50%;height:60px;width:60px;" onclick="showRule()"title="View rule">	
+
 	<div id='s_r' style="display:none;">
 		<span id="sp"style="float:right;" onclick="document.getElementById('s_r').style.display ='none';document.getElementById('d_i').style.display ='block';">&times;</span>
-		<p>1.>>This is a guessing game.</p>
+		<br><p>1.>>This is a guessing game.</p>
 		<p>2.>>The difficulty of guessing enhances as you move to higher level.</p>
 		<p>3.>><img src="l_l.png" style="border-radius:50%;height:30px;width:30px;">&nbsp;&nbsp;This icon enhances your chance by 3.This is a life-boost.<br>You can use it only once</p>
 		<p>4.>>The game is based on binary technique(A rather simple rule).<br>Close this rule box by clicking the above cross icon.</p>	
