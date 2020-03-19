@@ -35,10 +35,7 @@ margin:auto;}
 }
 </style>
 <script>	
-function con(){
-if(confirm("Do you really want to leave?\n You will lose your all current progress!!"))
-return true;
-return false;}
+
 alert("Dear friend!\nour Guessenger is a simple game that is based on luck and chance.However,if you know even little about binary technique,then you can easily complete its all level along with a bit of  luck..\nGood luck!!\nThere are many levels like 1,2,1.1,1.2..etc.\nDo Enjoy!\nRegards kk !!");
 var nm = prompt("Enter your name");
 var l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
@@ -52,7 +49,11 @@ l = Number(l);
    l = Number(l);}
 l= parseInt(l*10)/10;
 </script>
-<body style="background-color:blue;" onunload="return con()">
+<body style="background-color:blue;" onbeforeunload="return con()">
+	<script>
+function con(){
+return "Do you really want to leave?\n You will lose your all current progress!!";
+}</script>
 <audio style="visibity:hidden" loop>
 <source src="c2.mp3"></audio>
 <audio style="visibity:hidden" loop>
