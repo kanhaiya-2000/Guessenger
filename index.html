@@ -40,11 +40,14 @@ if(confirm("Do you really want to leave?\n You will lose your all current progre
 return true;
 return false;}
 alert("Dear friend!\nour Guessenger is a simple game that is based on luck and chance.However,if you know even little about binary technique,then you can easily complete its all level along with a bit of  luck..\nGood luck!!\nThere are many levels like 1,2,1.1,1.2..etc.\nDo Enjoy!\nRegards kk !!");
+var nm = prompt("Enter your name");
 var l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
 l = Number(l);
- while(!l||l<1){
-    if(l<1)
+ while(!l||l<1||l>60){
+    if(l<1||!l)
    alert("Oh!Enter valid level n!");
+   if(l>60)
+   alert("Max limit for the level is 60!");
    var l = prompt("Enter the difficulty level you wish to play");
    l = Number(l);}
 l= parseInt(l*10)/10;
@@ -92,8 +95,9 @@ l= parseInt(l*10)/10;
 		<p>4.>>The game is based on binary technique(A rather simple rule).<br>Close this rule box by clicking the above cross icon.</p>	
 	</div>
 <button onclick="retry()" id="b" style="display:none;">RETRY</button>
-<button onclick="L2()" id="d_i_n" style="display:none;">NEXT</button>
-<p id="d_r" style="background-color:yellow;font-weight:bold;text-align:center;">Your all result will appear here!</p>
+<button onclick="L2()" id="d_i_n" style="display:none;">NEXT</button><br>
+<button onclick="TC()" id="c_b" style="display:none;">TAKE CERTIFICATE</button>
+<p id="d_r" style="background-color:yellow;width:100%;font-weight:bold;text-align:center;">Your all result will appear here!</p>
 <img style="width:100%;height:auto;" src="https://thumbs.dreamstime.com/b/challenging-complex-like-puzzle-pictured-as-word-challenging-puzzle-pieces-to-show-challenging-can-be-difficult-164222308.jpg">
 <script>
 //play a custom song
@@ -125,9 +129,10 @@ ij.style.position="fixed";
   document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
  
     var para = document.getElementById("d_r");
+    
     var g_in = [];
      var max_chance = Math.floor(Math.log(10**l)/Math.log(2));
-	document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
+	document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
     var i =0;
     var st;
     function chk(){
@@ -143,6 +148,7 @@ else{
     	if((k==t_g)){
   document.getElementById("d_i").style.display ="none";
  document.getElementById("d_i_n").style.display ="block";
+ document.getElementById("c_b").style.display = "block";
          aud[l*10%9].pause();
            aud[aud.length-2].load();
           aud[aud.length-2].play();
@@ -158,12 +164,12 @@ else{
     }
   
     if((k>t_g)&&(i<max_chance))
-   { para.innerHTML = "Last entry was higher!<br>Previous guesses:"+g_in+"<br>Chances left:"+(max_chance-i);
+   { para.innerHTML = "Last entry was higher!<br>Previous guesses: "+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
 //  document.getElementById("g_i").reset();
    }
    if((k<t_g)&&(i<max_chance))
-   { para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in+"<br>Chances left:"+(max_chance-i);
+   { para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
    }
    if((i>=max_chance)&&(k!=t_g)){
@@ -218,8 +224,10 @@ aud[l*10%9].load();
 ij.style.display="none";
 } }
 function L2(){
+if(l<60){
   aud[aud.length-2].pause();
-  aud[l*10%9].pause();
+ ij.style.display = "block";
+ij2.style.display = "block";
  document.getElementById("d_i").style.display ="block";
  document.getElementById("d_i_n").style.display ="none";
 l= parseInt((l+0.1)*10)/10 ;
@@ -228,12 +236,22 @@ aud[l*10%9].load();
      aud[l*10%9].play();
 g_in = [];
  un_c = 0;
+document.getElementById("c_b").style.display = "none";
      t_g = Math.floor(Math.random()*(10**l)) +1 ;
   document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
       max_chance = Math.floor(Math.log(10**l)/Math.log(2))+(max_chance-i);
 	document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
      i =0;
    alert("Welcome to Level "+l);
+
+}
+ else{
+   para.innerHTML = "Congrats Genius!<br>You have accomplished the toughest level";
+   aud[aud.length-2].load();
+   aud[aud.length-2].play();
+   document.getElementById("c_b").style.display = "block";
+
+}
 
 }
 	function showRule(){
@@ -247,6 +265,35 @@ g_in = [];
 			document.getElementById('d_i').style.display ='none';
                 else{
 			document.getElementById('d_i').style.display ='block';}}
+  function TC(){
+    var p = nm.split(' ');
+    nm = p[0];
+  document.getElementById("d_i").style.display ="none";
+document.getElementById("h2").innerHTML ="Guessenger <br>L-"+l+"<br>Certificate";
+document.getElementById("d_i_n").style.display ="none";
+document.getElementById("c_b").style.display ="none";
+
+ij.style.display = "none";
+ij2.style.display = "none";
+   alert("Take the screenshot of this certificate for your purpose\nTo move to the next level,please click on the certificate ");
+   setTimeout(function(){alert("Click on the green paragraph to move to the next level")},11000);
+para.addEventListener("click",mn);
+ function mn(){
+
+if(confirm("Before moving to the next level,ensure to take the screenshot of this certificate.\nAre you sure to move to next level?")){
+para.removeEventListener("click",mn);
+if(l==60)
+alert("There is no more level now!You have already proved your genius nature");
+L2();
+}
+}
+   if(l==60)
+    var st0 = nm+"<i> is honored to complete the toughest level succesfully!This clearly indicates that </i>"+nm+"<i> can easily withstand higher load work and his/her brain calculation power is very nice!</i>" 
+ else{
+ var st0 = "<i>I hope you will continue growing with the same rate and will eventually finish the toughest level.</i>"
+}
+para.innerHTML = "<i>It is hereby declared that Mr/Mrs</i> "+nm+"<i> has succesfully completed the level-</i>"+l+"<i> of Guessenger!</i><br>"+st0 ;
+}
 
 </script>
 </body>
