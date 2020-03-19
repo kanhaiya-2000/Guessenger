@@ -68,6 +68,8 @@ l= parseInt(l*10)/10;
 <source src="c8.mp3"></audio>
 <audio style="visibity:hidden" loop>
 <source src="c9.mp3"></audio>
+<audio style="visibity:hidden" >
+<source src="po_up.mp3"></audio>
 <audio style="visibity:hidden" loop >
 <source src="congrats.mp3"></audio>
 <audio style="visibity:hidden" >
@@ -83,7 +85,7 @@ l= parseInt(l*10)/10;
 <img src="rules.jpeg" style="border-radius:50%;height:60px;width:60px;" onclick="showRule()"title="View rule">	
 
 	<div id='s_r' style="display:none;">
-		<span id="sp"style="float:right;" onclick="document.getElementById('s_r').style.display ='none';document.getElementById('d_i').style.display ='block';">&times;</span>
+		<span id="sp"style="float:right;" onclick="sr2()">&times;</span>
 		<br><p>1.>>This is a guessing game.</p>
 		<p>2.>>The difficulty of guessing enhances as you move to higher level.</p>
 		<p>3.>><img src="l_l.png" style="border-radius:50%;height:30px;width:30px;">&nbsp;&nbsp;This icon enhances your chance by 3.This is a life-boost.<br>You can use it only once</p>
@@ -125,7 +127,7 @@ ij.style.position="fixed";
     var para = document.getElementById("d_r");
     var g_in = [];
      var max_chance = Math.floor(Math.log(10**l)/Math.log(2));
-	document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+	document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
     var i =0;
     var st;
     function chk(){
@@ -179,7 +181,7 @@ function retry(){
      aud[l*10%9].play();
    aud[aud.length -1].pause();
      max_chance = Math.floor(Math.log(10**l)/Math.log(2));
-     document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+     document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
        un_c ++;
 	g_in = [];
         i=0;
@@ -204,11 +206,14 @@ para.removeEventListener("click",g);}}
 
   function in_l(){
 if(confirm("You can use your life-line only single time in a match.Use it in extreme severe case only\nDo u want to use it? ")){
+
 max_chance = max_chance+3 ;
-document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
 alert("Your chance has been increased by 3");
+aud[aud.length-3].play();
 aud[l*10%9].load();
      aud[l*10%9].play();
+   aud[aud.length -2].pause();
    aud[aud.length -1].pause();
 ij.style.display="none";
 } }
@@ -226,7 +231,7 @@ g_in = [];
      t_g = Math.floor(Math.random()*(10**l)) +1 ;
   document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
       max_chance = Math.floor(Math.log(10**l)/Math.log(2))+(max_chance-i);
-	document.getElementById("d_p").innerHTML = "Guess a number between 1 and"+Math.floor(10**l)+"<br>Total attempt: "+max_chance;
+	document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
      i =0;
    alert("Welcome to Level "+l);
 
@@ -236,6 +241,12 @@ g_in = [];
 		document.getElementById("s_r").style.display ="block";
 		
 	}
+	function sr2(){
+	document.getElementById('s_r').style.display ='none';
+		if((i>=max_chance)||(g_in[i-1]==t_g))
+			document.getElementById('d_i').style.display ='none';
+                else{
+			document.getElementById('d_i').style.display ='block';}}
 
 </script>
 </body>
