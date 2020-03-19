@@ -226,7 +226,7 @@ ij.style.display="none";
 function L2(){
 if(l<60){
   aud[aud.length-2].pause();
- ij.style.display = "block";
+ ij.style.visibility = "visible";
 ij2.style.display = "block";
  document.getElementById("d_i").style.display ="block";
  document.getElementById("d_i_n").style.display ="none";
@@ -273,7 +273,7 @@ document.getElementById("h2").innerHTML ="Guessenger <br>L-"+l+"<br>Certificate"
 document.getElementById("d_i_n").style.display ="none";
 document.getElementById("c_b").style.display ="none";
 
-ij.style.display = "none";
+ij.style.visibility = "hidden";
 ij2.style.display = "none";
    alert("Take the screenshot of this certificate for your purpose\nTo move to the next level,please click on the certificate ");
    setTimeout(function(){alert("Click on the green paragraph to move to the next level")},11000);
