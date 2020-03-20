@@ -24,13 +24,13 @@ margin:auto;}
   display: none; 
   position: fixed;
   z-index: 1; 
-  padding-top: 100px; 
+  padding-top: 10px; 
   left: 0;
   top: 0;
   width: 300px; 
   height: 100%; 
-  overflow: auto; 
   
+  overflow-y : auto;
   background-color: rgba(0,200,1,0.9); /* Black w/ opacity */
 }
 </style>
@@ -48,6 +48,7 @@ l = Number(l);
    var l = prompt("Enter the difficulty level you wish to play");
    l = Number(l);}
 l= parseInt(l*10)/10;
+setTimeout(function(){alert('Before starting play,click the show rule icon above to know all rules.\n\nIgnore if already done');},8000);
 </script>
 <body style="background-color:blue;" onbeforeunload="return con()">
 	<script>
@@ -92,8 +93,8 @@ return "Do you really want to leave?\n You will lose your all current progress!!
 		<span id="sp"style="float:right;" onclick="sr2()">&times;</span>
 		<br><p>1.>>This is a guessing game.</p>
 		<p>2.>>The difficulty of guessing enhances as you move to higher level.</p>
-		<p>3.>><img src="l_l.png" style="border-radius:50%;height:30px;width:30px;">&nbsp;&nbsp;This icon enhances your chance by 3.This is a life-boost.<br>You can use it only once</p>
-		<p>4.>>The game is based on binary technique(A rather simple rule).<br>Close this rule box by clicking the above cross icon.</p>	
+		<p>3.>><img src="l_l.png" style="border-radius:50%;height:30px;width:30px;">&nbsp;&nbsp;This icon (on the right top) enhances your chance by 3.This is a life-boost.<br>You can use it only once</p>
+		<p>4.>>The game is based on binary technique(A rather simple rule).You are expected to enter the correct guess in input box.<br>The analysis of your guessing will be done and will be shown in the display.<br>5.>>This game checks how much patienceful you are while dealing with larger number<br>6.>><b>Note that</b> it is always possible to win the game even without taking life-boost.Life boost is just a help for beginner.<br>It is advised to use life-boost only in case you are unable to complete despite of higher effort <br><span style="text-decoration:underline;color:red;font-size:15px;">Close this rule box by clicking the above cross icon.</p>	
 	</div>
 <button onclick="retry()" id="b" style="display:none;">RETRY</button>
 <button onclick="L2()" id="d_i_n" style="display:none;">NEXT</button><br>
@@ -137,7 +138,7 @@ ij.style.position="fixed";
     var i =0;
     var st;
     function chk(){
-        aud[l*10%9].play();
+        
     	var v = document.getElementById("g_i").value;
         if(!Number(v)){
           alert("Enter valid input!!");
@@ -165,12 +166,12 @@ else{
     }
   
     if((k>t_g)&&(i<max_chance))
-   { para.innerHTML = "Last entry was higher!<br>Previous guesses: "+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
+   {aud[l*10%9].play(); para.innerHTML = "Last entry was higher!<br>Previous guesses: "+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
 //  document.getElementById("g_i").reset();
    }
    if((k<t_g)&&(i<max_chance))
-   { para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
+   { aud[l*10%9].play();para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
    }
    if((i>=max_chance)&&(k!=t_g)){
@@ -196,15 +197,44 @@ function retry(){
       document.getElementById("b").style.display="none";
        if(un_c>3){
 	document.getElementById("d_i").style.display ="none";
-       para.innerHTML = "It seems like you might get tired!Well <br>I would suggest you to try lower-one (in case u r feeling frustrated)<br>click on this line to decide further what you have to do!";
+       para.innerHTML = "It seems like you might get tired!Well <br>I would suggest you to try lower-one (in case u r feeling frustrated)<br>click on this yellow line area to decide further what you have to do!";
+aud[l*10%9].pause();
 para.addEventListener("click",g);
+var lo = l;	       
 function g(){
 if(confirm("Do you want to play the same level?")){
 document.getElementById("d_i").style.display ="block";
+
+	un_c -=2;
 para.innerHTML="Well!Keep going on";
- para.style.background ="yellow";}
-else
-window.location.reload();
+ para.style.background ="yellow";
+aud[l*10%9].play();}
+else{
+
+l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
+l = Number(l);
+ while(!l||l<1||l>60||l>lo){
+    if(l<1||!l)
+   alert("Oh!Enter valid level n!");
+   if(l>60)
+   alert("Max limit for the level is 60!");
+	 if(l>lo&&l<=60)
+		 alert("Higher level will be more tougher!!\nEnter lower or same level");
+    l = prompt("Enter the difficulty level you wish to play");
+	
+   l = Number(l);}
+l= parseInt(l*10)/10;
+	aud[l*10%9].load();
+aud[l*10%9].play();
+document.getElementById("d_i").style.display ="block";
+	document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
+	max_chance =  Math.floor(Math.log(10**l)/Math.log(2))+1;
+	document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
+	para.innerHTML = "Well!Never lose<br>Maintain enthusiasm throughout the whole game<br>As your certificate is waiting for you";
+	un_c = 0;
+	g_in = [];
+	t_g = Math.floor(Math.random()*(10**l)) +1 ;
+}
 para.removeEventListener("click",g);}}
      else
       para.innerHTML = "Well ! Never worry!Give a hopeful try!";
@@ -216,10 +246,11 @@ if(confirm("You can use your life-line only single time in a match.Use it in ext
 
 max_chance = max_chance+3 ;
 document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
-alert("Your chance has been increased by 3");
+para.innerHTML = "previous guesses :"+g_in.join(' ')+"<br>Chances left: "+(max_chance - i) ;
+	alert("Your chance has been increased by 3");
+aud[aud.length -3].load();
 aud[aud.length-3].play();
-aud[l*10%9].load();
-     aud[l*10%9].play();
+aud[l*10%9].play();
    aud[aud.length -2].pause();
    aud[aud.length -1].pause();
 ij.style.display="none";
@@ -227,6 +258,7 @@ ij.style.display="none";
 function L2(){
 if(l<60){
   aud[aud.length-2].pause();
+  aud[l*10%9].pause();
  ij.style.visibility = "visible";
 ij2.style.display = "block";
  document.getElementById("d_i").style.display ="block";
@@ -248,6 +280,7 @@ document.getElementById("c_b").style.display = "none";
 }
  else{
    para.innerHTML = "Congrats Genius!<br>You have accomplished the toughest level";
+   aud[l*10%9].pause();
    aud[aud.length-2].load();
    aud[aud.length-2].play();
    document.getElementById("c_b").style.display = "block";
