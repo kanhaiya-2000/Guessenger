@@ -20,7 +20,7 @@ width:50%;
 margin:auto;}
 #s_r {
    
-  text-align:justify;
+  text-align:center;
   display: none; 
   position: fixed;
   z-index: 1; 
@@ -92,11 +92,11 @@ return "Do you really want to leave?\n You will lose your all current progress!!
 <img src="rules.jpeg" style="border-radius:50%;height:60px;width:60px;" onclick="showRule()"title="View rule">	
 
 	<div id='s_r' style="display:none;">
-		<span id="sp"style="float:right;" onclick="sr2()">&times;</span><br>
-		<br><p>1.>>This is a guessing game.</p><br>
-		<p>2.>>The difficulty of guessing enhances as you move to higher level.</p><br>
-		<p>3.>><img src="l_l.png" style="border-radius:50%;height:30px;width:30px;">&nbsp;&nbsp;This icon (on the right top) enhances your chance by 3.This is a life-boost.<br>You can use it only once</p><br>
-		<p>4.>>The game is based on binary technique(A rather simple rule).You are expected to enter the correct guess in input box.<br><br>The analysis of your guessing will be done and will be shown in the display.The guess <br><br>5.>>This game checks how much patienceful you are while dealing with larger number<br>6.>><b>Note that</b> it is always possible to win the game even without taking life-boost.Life boost is just a help for beginner.<br>It is advised to use life-boost only in case you are unable to complete despite of higher effort<br><br><span style="text-decoration:underline;color:red;font-size:15px;text-align:center;">Close this rule box by clicking the above cross icon.</p>	
+		<span id="sp"style="float:right;" onclick="sr2()">&times;</span>
+		<br><p>1.>>This is a guessing game.</p>
+		<p>2.>>The difficulty of guessing enhances as you move to higher level.</p>
+		<p>3.>><img src="l_l.png" style="border-radius:50%;height:30px;width:30px;">&nbsp;&nbsp;This icon (on the right top) enhances your chance by 3.This is a life-boost.<br>You can use it only once</p>
+		<p>4.>>The game is based on binary technique(A rather simple rule).You are expected to enter the correct guess in input box.<br><br>The analysis of your guessing will be done and will be shown in the display.<br><br>5.>>This game checks how much patienceful you are while dealing with larger number<br>6.>><b>Note that</b> it is always possible to win the game even without taking life-boost.Life boost is just a help for beginner.<br>It is advised to use life-boost only in case you are unable to complete despite of higher effort<br><br><span style="text-decoration:underline;color:red;font-size:15px;text-align:center;">Close this rule box by clicking the above cross icon.</p>	
 	</div>
 <button onclick="retry()" id="b" style="display:none;">RETRY</button>
 <button onclick="L2()" id="d_i_n" style="display:none;">NEXT</button><br>
@@ -217,9 +217,11 @@ para.innerHTML="Well!Keep going on";
  para.style.background ="yellow";
 aud[l*10%9].play();}
 else{
+
  if(s_in==0)
  p_in = confirm("Would you still like to play harder version of this game?\nPress ok to play harder version again,otherwise cancel to play easier version");
  s_in = (p_in)?0:1;
+d.innerHTML = (s_in==1)?"Beginners Level" : "Expert level";
 l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
 l = Number(l);
  while(!l||l<1||l>15||l>lo){
