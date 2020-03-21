@@ -105,10 +105,11 @@ return "Do you really want to leave?\n You will lose your all current progress!!
 <button onclick="L2()" id="d_i_n" style="display:none;">NEXT</button><br>
 <button onclick="TC()" id="c_b" style="display:none;">TAKE CERTIFICATE</button>
 <p id="d_r" style="background-color:yellow;width:100%;font-weight:bold;text-align:center;">Your all result will appear here!</p>
-<center><img style="border-radius:50%;height:60px;width:60px;" src="quit.png" title="select other level to play" onclick="quit()"></center>
+<center id="cen"><img style="border-radius:50%;height:60px;width:60px;" src="quit.png" title="select other level to play" onclick="quit()"></center>
 <img style="width:100%;height:auto;" src="https://thumbs.dreamstime.com/b/challenging-complex-like-puzzle-pictured-as-word-challenging-puzzle-pieces-to-show-challenging-can-be-difficult-164222308.jpg">
 <script>
 	var d = document.getElementById("d");
+	var cen = document.getElementById('cen');
 	d.innerHTML = (s_in==1)?"Beginners Level" : "Expert level";
 //play a custom song
 var aud = document.getElementsByTagName("audio");
@@ -186,6 +187,7 @@ else{
             g_in[i++] = v;
    var k = g_in[i-1];
     	if((k==t_g)){
+		cen.style.display="none";
   document.getElementById("d_i").style.display ="none";
  document.getElementById("d_i_n").style.display ="block";
  document.getElementById("c_b").style.display = "block";
@@ -204,18 +206,19 @@ else{
     }
   
     if((k>t_g)&&(i<max_chance))
-   {aud[l*10%9].play(); para.innerHTML = "Last entry was higher!<br>Previous guesses: "+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
+   {cen.style.display="block";aud[l*10%9].play(); para.innerHTML = "Last entry was higher!<br>Previous guesses: "+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
     k.style.color ="white";
 //  document.getElementById("g_i").reset();
    }
    if((k<t_g)&&(i<max_chance))
-   { aud[l*10%9].play();para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
+   {cen.style.display="block"; aud[l*10%9].play();para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
     k.style.color ="black";
    }
    if((i>=max_chance)&&(k!=t_g)){
 aud[l*10%9].pause();
+cen.style.display="none";
 aud[aud.length -1].load();
    aud[aud.length -1].play();
    para.innerHTML ="Oops!You ran out of your chance!!";
@@ -226,6 +229,7 @@ document.getElementById("d_i").style.display ="none";
 	
    }}
 function retry(){
+	cen.style.display="block";
      aud[l*10%9].load();
      aud[l*10%9].play();
    aud[aud.length -1].pause();
@@ -237,6 +241,7 @@ function retry(){
       document.getElementById("d_i").style.display ="block";
       document.getElementById("b").style.display="none";
        if(un_c>3){
+	      cen.style.display="none";
 	document.getElementById("d_i").style.display ="none";
        para.innerHTML = "It seems like you might get tired!Well <br>I would suggest you to try lower-one (in case u r feeling frustrated)<br>click on this yellow line area to decide further what you have to do!";
 aud[l*10%9].pause();
@@ -271,6 +276,7 @@ l = Number(l);
 l= parseInt(l*10)/10;
 	aud[l*10%9].load();
 aud[l*10%9].play();
+	cen.style.display="block";
 document.getElementById("d_i").style.display ="block";
 	document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
 	max_chance =  Math.floor(Math.log(10**l)/Math.log(2))+1;
@@ -302,6 +308,7 @@ ij.style.display="none";
 } }
 function L2(){
 if(l<16){
+	cen.style.display="block";
   aud[aud.length-2].pause();
   aud[l*10%9].pause();
  ij.style.visibility = "visible";
@@ -325,6 +332,7 @@ document.getElementById("c_b").style.display = "none";
 }
  else{
    para.innerHTML = "Congrats Genius!<br>You have accomplished the toughest level";
+   cen.style.display="none";
    aud[l*10%9].pause();
    aud[aud.length-2].load();
    aud[aud.length-2].play();
@@ -336,18 +344,21 @@ document.getElementById("c_b").style.display = "none";
 	function showRule(){
 		document.getElementById("d_i").style.display ="none";
 		document.getElementById("s_r").style.display ="block";
+		cen.style.display="none";
 		
 	}
 	function sr2(){
 	document.getElementById('s_r').style.display ='none';
-		if((i>=max_chance)||(g_in[i-1]==t_g))
-			document.getElementById('d_i').style.display ='none';
-                else{
+		if((i>=max_chance)||(g_in[i-1]==t_g)){
+			cen.style.display="none";
+			document.getElementById('d_i').style.display ='none';}
+                else{   cen.style.display="block";
 			document.getElementById('d_i').style.display ='block';}}
   function TC(){
     var p = nm.split(' ');
     nm = p[0];
   document.getElementById("d_i").style.display ="none";
+  cen.style.display="none";	  
 document.getElementById("h2").innerHTML ="Guessenger <br>L-"+l+"<br>Certificate";
 document.getElementById("d_i_n").style.display ="none";
 document.getElementById("c_b").style.display ="none";
