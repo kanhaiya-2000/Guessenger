@@ -81,7 +81,7 @@ return "Do you really want to leave?\n You will lose your all current progress!!
 <source src="congrats.mp3"></audio>
 <audio style="visibity:hidden" >
 <source src="gameover.mp3"></audio>
-<h2 style="text-align:center;color:black;">Dare to compete!</h2>
+<h2 style="text-align:center;color:black;">Dare to compete!<br><span id="d"></span></h2>
 <h2 style='text-align:center;color:red;' id="h2">Guessenger!<br>LEVEL-2</h2>
 <div style="text-align:center" id="d_i">
 <p id="d_p" style="font-weight:bold;">Guess a number between 1 and 100(both inclusive)</p>
@@ -104,6 +104,8 @@ return "Do you really want to leave?\n You will lose your all current progress!!
 <p id="d_r" style="background-color:yellow;width:100%;font-weight:bold;text-align:center;">Your all result will appear here!</p>
 <img style="width:100%;height:auto;" src="https://thumbs.dreamstime.com/b/challenging-complex-like-puzzle-pictured-as-word-challenging-puzzle-pieces-to-show-challenging-can-be-difficult-164222308.jpg">
 <script>
+	var d = document.getElementById("d");
+	d.innerHTML = (s_in==1)?"Beginners Level" : "Expert level";
 //play a custom song
 var aud = document.getElementsByTagName("audio");
 aud[l*10%9].load();
@@ -331,7 +333,7 @@ L2();
    if(l==15)
     var st0 = nm+"<i> is honored to complete the toughest level succesfully!This clearly indicates that Mr/Mrs </i>"+nm+"<i> can easily withstand higher load work and his/her brain calculation power is very nice!</i>" 
  else{
- var st0 = "<i>I hope you will continue growing with the same rate and will eventually finish the toughest level.</i>"
+ var st0 = nm+"<i>,I hope you will continue growing with the same rate and will eventually finish the toughest level.</i>"
 }
 para.innerHTML = "<i>It is hereby declared that Mr/Mrs</i> "+nm+"<i> has succesfully completed the level-</i>"+l+"<i> of Guessenger!</i><br>Mr/Mrs "+st0 ;
 }
