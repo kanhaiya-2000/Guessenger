@@ -147,6 +147,7 @@ ij.style.position="fixed";
     var st;
 function quit(){
 	if(confirm("Are you sure to leave and play another level?\nYou will lose your all progress\nPress ok to confirm")){
+		aud[l*10%9].pause();
         p_in = confirm("Would you like to play harder version of this game?\nPress ok to play harder version");
 	s_in = (p_in)?0:1;
 l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
