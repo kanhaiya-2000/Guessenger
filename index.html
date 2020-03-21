@@ -36,7 +36,7 @@ margin:auto;}
 </style>
 <script>	
 
-alert("Dear friend!\nour Guessenger is a simple game that is based on luck and chance.However,if you know even little about binary technique,then you can easily complete its all 141 levels along with a bit of  luck..\nGood luck!!\nThere are many levels like 1,2,1.1,1.2..etc.Total no of level is 141\nDo Enjoy!\nRegards kk !!");
+alert("Dear friend!\nour Guessenger is a simple game that is based on luck and chance.However,if you know even little about binary technique,then you can easily complete its all 151 levels along with a bit of  luck..\nGood luck!!\nThere are many levels like 1,2,1.1,1.2..etc.Total no of level is 151\nDo Enjoy!\nRegards kk !!");
 var nm = prompt("Enter your name");
 	var p_in = confirm("If you are not a beginner\nWould you like to play harder version of this game?\nPress ok to play harder version");
 	var s_in = (p_in)?0:1;
@@ -45,8 +45,8 @@ l = Number(l);
  while(!l||l<1||l>16){
     if(l<1||!l)
    alert("Oh!Enter valid level n!");
-   if(l>15)
-   alert("Max limit for the level is 15!use 15 or 14.9 etc");
+   if(l>16)
+   alert("Max limit for the level is 16!use 16 or 15.9 etc");
    var l = prompt("Enter the difficulty level you wish to play");
    l = Number(l);}
 l= parseInt(l*10)/10;
@@ -224,12 +224,12 @@ else{
 d.innerHTML = (s_in==1)?"Beginners Level" : "Expert level";
 l = prompt("Enter the difficulty level you wish to play\nEx: 1.1, 2, etc ");
 l = Number(l);
- while(!l||l<1||l>15||l>lo){
+ while(!l||l<1||l>16||l>lo){
     if(l<1||!l)
    alert("Oh!Enter valid level n!");
-   if(l>15)
-   alert("Max limit for the level is 15!");
-	 if(l>lo&&l<=15)
+   if(l>16)
+   alert("Max limit for the level is 16!");
+	 if(l>lo&&l<=16)
 		 alert("Higher level will be more tougher!!\nEnter lower or same level");
     l = prompt("Enter the difficulty level you wish to play");
 	
@@ -267,7 +267,7 @@ aud[l*10%9].play();
 ij.style.display="none";
 } }
 function L2(){
-if(l<15){
+if(l<16){
   aud[aud.length-2].pause();
   aud[l*10%9].pause();
  ij.style.visibility = "visible";
@@ -327,12 +327,12 @@ para.addEventListener("click",mn);
 
 if(confirm("Before moving to the next level,ensure to take the screenshot of this certificate.\nAre you sure "+nm+" to move to next level?")){
 para.removeEventListener("click",mn);
-if(l==15)
+if(l==16)
 alert("There is no more level now! "+nm+",You have already proved your genius nature");
 L2();
 }
 }
-   if(l==15)
+   if(l==16)
     var st0 = nm+"<i> is honored to complete the toughest level succesfully!This clearly indicates that Mr/Mrs </i>"+nm+"<i> can easily withstand higher load work and his/her brain calculation power is very nice!</i>" 
  else{
  var st0 = nm+"<i>,I hope you will continue growing with the same rate and will eventually finish the toughest level.</i>"
