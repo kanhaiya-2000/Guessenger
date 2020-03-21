@@ -163,6 +163,8 @@ l= parseInt(l*10)/10;
 d.innerHTML = (s_in==1)?"Beginners Level" : "Expert level";
 aud[l*10%9].load();
 aud[l*10%9].play();
+	para.innerHTML = "Welcome to Level-"+l ;
+	para.style.background="#0f0";
 l_l = 1;
  un_c = 0;
  t_g = Math.floor(Math.random()*(10**l)) +1 ;
