@@ -315,7 +315,7 @@ if(l<16){
 ij2.style.display = "block";
  document.getElementById("d_i").style.display ="block";
  document.getElementById("d_i_n").style.display ="none";
-l= parseInt((l+0.1)*10)/10 ;
+l= parseInt((l+0.1).toFixed(1)*10)/10 ;  // floating-point precision error yha pe hol rhe re **toFixed() bhai jindabad
 para.innerHTML = "Welcome to level "+l;
 aud[l*10%9].load();
      aud[l*10%9].play();
