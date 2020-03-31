@@ -84,7 +84,7 @@ return "Do you really want to leave?\n You will lose your all current progress!!
 <source src="congrats.mp3"></audio>
 <audio style="visibity:hidden" >
 <source src="gameover.mp3"></audio>
-<h2 style="text-align:center;color:black;">Dare to compete!<br><span id="d"></span></h2>
+<h2 style="text-align:center;color:green;">Dare to compete!<br><span id="d"></span></h2>
 <h2 style='text-align:center;color:red;' id="h2">Guessenger!<br>LEVEL-2</h2>
 <div style="text-align:center" id="d_i">
 <p id="d_p" style="font-weight:bold;">Guess a number between 1 and 100(both inclusive)</p>
@@ -169,6 +169,7 @@ aud[l*10%9].play();
 l_l = 1;
  un_c = 0;
  t_g = Math.floor(Math.random()*(10**l)) +1 ;
+ij.style.display="block";
   document.getElementById("h2").innerHTML = "Guessenger!<br>Level-"+l ;
    g_in = [];
    max_chance = Math.floor(Math.log(10**l)/Math.log(2));
@@ -207,23 +208,24 @@ else{
   
     if((k>t_g)&&(i<max_chance))
    {cen.style.display="block";aud[l*10%9].play(); para.innerHTML = "Last entry was higher!<br>Previous guesses: "+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
-   para.style.background="#f00";
-    k.style.color ="white";
+   para.style.background="#4B0082";
+    //k.style.color ="white";
 //  document.getElementById("g_i").reset();
    }
    if((k<t_g)&&(i<max_chance))
    {cen.style.display="block"; aud[l*10%9].play();para.innerHTML = "Last entry was lower!<br>Previous guesses:"+g_in.join(' ')+"<br>Chances left:"+(max_chance-i);
    para.style.background="#f00";
-    k.style.color ="black";
+   //k.style.color ="black";
    }
    if((i>=max_chance)&&(k!=t_g)){
-aud[l*10%9].pause();
-cen.style.display="none";
-aud[aud.length -1].load();
-   aud[aud.length -1].play();
-   para.innerHTML ="Oops!You ran out of your chance!!";
-document.getElementById("b").style.display="block";
-document.getElementById("d_i").style.display ="none";
+	aud[l*10%9].pause();
+	cen.style.display="none";
+	aud[aud.length -1].load();
+	aud[aud.length -1].play();
+	para.innerHTML ="Oops!You ran out of your chance!!";
+	para.style.background = "#f00";
+	document.getElementById("b").style.display="block";
+	document.getElementById("d_i").style.display ="none";
    
     }
 	
@@ -234,6 +236,7 @@ function retry(){
      aud[l*10%9].play();
    aud[aud.length -1].pause();
      max_chance = Math.floor(Math.log(10**l)/Math.log(2));
+     t_g = Math.floor(Math.random()*(10**l)) +1 ;
      document.getElementById("d_p").innerHTML = "Guess a number between 1 and "+(Math.ceil(10**l))+"(inclusive)<br>Total attempt: "+max_chance;
        un_c ++;
 	g_in = [];
@@ -309,6 +312,8 @@ ij.style.display="none";
 function L2(){
 if(l<16){
 	cen.style.display="block";
+	document.body.style.backgroundImage = "none";
+        document.body.style.backgroundColor = "blue";
   aud[aud.length-2].pause();
   aud[l*10%9].pause();
  ij.style.visibility = "visible";
@@ -358,7 +363,13 @@ document.getElementById("c_b").style.display = "none";
     var p = nm.split(' ');
     nm = p[0];
   document.getElementById("d_i").style.display ="none";
-  cen.style.display="none";	  
+  cen.style.display="none";
+	  if(p_in)
+		  document.body.style.backgroundImage = "url(welcome2.gif)" ;
+           else
+		  document.body.style.backgroundImage = "url(welcome.gif)" ;
+	  document.body.style.backgroundSize ="100% 50%";
+	  document.body.style.backgroundRepeat = "no-repeat";
 document.getElementById("h2").innerHTML ="Guessenger <br>L-"+l+"<br>Certificate";
 document.getElementById("d_i_n").style.display ="none";
 document.getElementById("c_b").style.display ="none";
@@ -388,3 +399,4 @@ para.innerHTML = "<i>It is hereby declared that Mr/Mrs</i> "+nm+"<i> has succesf
 </script>
 </body>
 </html>
+
